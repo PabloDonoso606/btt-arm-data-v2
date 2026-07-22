@@ -3,11 +3,7 @@ name: Update Steam Prices
 on:
   schedule:
     - cron: "0 * * * *"
-  workflow_dispatch:
-    inputs:
-      collection_id:
-        description: "Collection ID"
-        required: true
+  workflow_dispatch: {}
 
 jobs:
   update:
