@@ -1,0 +1,37 @@
+name: Update Steam Prices
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+    inputs:
+      collection_id:
+        description: "Collection ID"
+        required: true
+
+jobs:
+  update:
+    strategy:
+      fail-fast: false
+      matrix:
+        collection_id: [17, 18, 19, 20]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24.14.1"
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Update Steam Prices
+        env:
+          COLLECTION_ID: ${{ matrix.collection_id }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+        run: node src/index.js
