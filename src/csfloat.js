@@ -50,7 +50,7 @@ async function main() {
         continue;
       }
 
-      console.log(`✅ ${skin.id} | ${skin.market_hash_name} -> ${price}`);
+      console.log(`✅ ${skin.id} | ${skin.market_hash_name} | $${price}`);
     }
   } catch (error) {
     console.error(error);
