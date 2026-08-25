@@ -7,6 +7,7 @@ if (!collectionId) {
   throw new Error("COLLECTION_ID is required");
 }
 
+
 function parsePrice(price) {
   return Number(price.replace("$", "").replace(/,/g, ""));
 }
